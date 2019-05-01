@@ -1,75 +1,97 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-</head>
-<body>
-<h1>ONION NEWS</h1>
-	<div>
-		
-	</div>
+  <head>
+    <title>Scraping News</title>
+  </head>
+  <body>
+    <h1>ONION NEWS</h1>
+    <div id="mainDiv">
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.4.0.min.js"
+      integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+      crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var inputVal;
+      
+      function getNews(){
+      	$('div').empty();
+      
+      	$.ajax({
+      		method: 'GET',
+      		url: '/news'
+      	}).then(function(news){
 
-<script
-  src="https://code.jquery.com/jquery-3.4.0.min.js"
-  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
-  crossorigin="anonymous"></script>
-<script type="text/javascript">
+      		for (var nIndex in news){
+      
+      			var newsDiv = $('<div>');
+      			newsDiv.html(`Title: ${news[nIndex].title} <br>Link: ${news[nIndex].link} <br>Story: ${news[nIndex].story} <br>`);
+      
+      			var commentDiv = $("<div>").attr("class", "commentDiv")
+      									  .attr("id","commentDiv"+news[nIndex]._id);
+      
+      			var input = $('<input>').attr("class", "comment")
+      									.attr("id", "input"+news[nIndex]._id);
 
-	function getNews(){
-		$('div').empty();
+      			var addButton = $('<button>').attr('class', 'add-comment').attr('data-id', news[nIndex]._id).text('Add comment');
+      
+      			newsDiv.append(commentDiv);
+      			newsDiv.append(input);
+      			newsDiv.append(addButton);
+      			
+      			$('#mainDiv').append(newsDiv);
+      
+      		}
+      	})
+      }
+      
+      getNews();
+      
+      $(document).on('click', '.add-comment', function(e){
+      
+      	e.preventDefault();
+      
+      	inputVal = $(this).prev().val();
+      	var currDiv = $(this).prev().prev(".commentDiv");
+      	// inputVal = $('input').val();
+      	console.log(inputVal);
 
-		$.ajax({
-			method: 'GET',
-			url: '/news'
-		}).then(function(news){
-			for (var nIndex in news){
-				var p = $('<p>');
-				p.html(`Title: ${news[nIndex].title} <br>Link: ${news[nIndex].link} <br>Story: ${news[nIndex].story} <br>`);
+      	$.ajax({
+      		method: 'POST',
+      		url: `/addComment`,
+      		data: {
+      			comment: inputVal
+      		}
+      	}).then(function(cid){
+      
+      		console.log(cid);
+      		console.log(cid.comment);
+      		console.log(cid._id);
 
-				var input = $('<input>').attr("class", "comment");
+      		var commentPara = $("<p>").text(cid.comment).attr("id", "commentPara"+cid._id);
 
-				var inputVal = input.val();
-
-				var deleteButton = $('<button>').attr('class', 'delete-comment').attr('data-id', news[nIndex]._id).text('Delete comment');
-
-				var addButton = $('<button>').attr('class', 'add-comment').attr('data-id', news[nIndex]._id).text('Add comment');
-
-				p.append(input);
-				p.append(addButton);
-				p.append(deleteButton);
-
-				$('div').append(p);
-
-			}
-		})
-	}
-
-	getNews();
-
-	$(document).on('click', '.add-comment', function(){
-
-		$.ajax({
-			method: 'POST',
-			url: `/addComment`
-		}).then(function(idd){
-			console.log(idd);
-			getNews();
-		})
-	})
-
-	
-	$(document).on('click', '.delete-comment', function(){
-
-		var id = $(this).attr('data-id');
-
-		$.ajax({
-			method: 'DELETE',
-			url: `/comment/${id}`
-		}).then(function(idd){
-			console.log(idd);
-			getNews();
-		})
-	})
-</script>
-</body>
+      		var deleteButton = $('<button>').attr('class', 'delete-comment').attr('data-id', cid._id).text('Delete comment');
+      
+      		commentPara.append(deleteButton);
+      		currDiv.append(commentPara);
+      
+      		// getNews();
+      	})
+      })
+      
+      
+      $(document).on('click', '.delete-comment', function(){
+      
+      	var id = $(this).attr('data-id');
+      
+      	$.ajax({
+      		method: 'DELETE',
+      		url: `/comment/${id}`
+      	}).then(function(idd){
+      		console.log(idd);
+      		getNews();
+      	})
+      })
+    </script>
+  </body>
 </html>
