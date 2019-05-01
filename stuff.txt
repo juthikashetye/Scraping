@@ -1,0 +1,30 @@
+<div class="m" data-v-7cf20f0a>
+
+  <a href="/features/apples-fiscal-2q-revenue-profit-sag-amid-iphone-slump" data-v-7cf20f0a>
+
+    <img src="https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2019/04/544/306/ContentBroker_contentid-a9475af992064a67a846d1e4a180a4be.png?ve=1&amp;tl=1" alt="Apple&apos;s fiscal 2Q revenue, profit sag amid iPhone slump" data-v-7cf20f0a>
+
+    <span class="overlay" data-v-7cf20f0a>
+
+    [overlay type]
+
+    </span>
+
+  </a>
+
+</div>
+
+<div class="info" data-v-7cf20f0a>
+    <!---->
+    <!---->
+    <h3 data-v-7cf20f0a>
+        <a href="/features/apples-fiscal-2q-revenue-profit-sag-amid-iphone-slump" data-v-7cf20f0a>Apple&apos;s fiscal 2Q revenue, profit sag amid iPhone slump</a>
+    </h3>
+   
+    <p data-v-7cf20f0a>
+      Weak iPhone demand is still causing Apple&apos;s overall sales to shrink, despite the company&apos;s effort to emphasize services designed to bring in a steady flow of money from its 1.4 billion devices still in use.
+    </p>
+
+    <!---->
+    <!---->
+</div>----58---

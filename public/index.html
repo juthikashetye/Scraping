@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h1>ONION NEWS</h1>
+	<div>
+		
+	</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.4.0.min.js"
+  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+	function getNews(){
+		$('div').empty();
+
+		$.ajax({
+			method: 'GET',
+			url: '/news'
+		}).then(function(news){
+			for (var nIndex in news){
+				var p = $('<p>');
+				p.html(`Title: ${news[nIndex].title} <br>Link: ${news[nIndex].link} <br>Story: ${news[nIndex].story} <br>`);
+
+				var input = $('<input>').attr("class", "comment");
+
+				var inputVal = input.val();
+
+				var deleteButton = $('<button>').attr('class', 'delete-comment').attr('data-id', news[nIndex]._id).text('Delete comment');
+
+				var addButton = $('<button>').attr('class', 'add-comment').attr('data-id', news[nIndex]._id).text('Add comment');
+
+				p.append(input);
+				p.append(addButton);
+				p.append(deleteButton);
+
+				$('div').append(p);
+
+			}
+		})
+	}
+
+	getNews();
+
+	$(document).on('click', '.add-comment', function(){
+
+		$.ajax({
+			method: 'POST',
+			url: `/addComment`
+		}).then(function(idd){
+			console.log(idd);
+			getNews();
+		})
+	})
+
+	
+	$(document).on('click', '.delete-comment', function(){
+
+		var id = $(this).attr('data-id');
+
+		$.ajax({
+			method: 'DELETE',
+			url: `/comment/${id}`
+		}).then(function(idd){
+			console.log(idd);
+			getNews();
+		})
+	})
+</script>
+</body>
+</html>
