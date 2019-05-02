@@ -62,6 +62,25 @@ app.get("/all-comments", function(req, res) {
 
 
 app.delete("/comment/:id", function(req, res) {
+
+  // TRY THIS
+// app.delete("/comment/:articleId/:commentId", function(req, res) {
+//   db.scrapedNews.update(
+//       {_id: mongojs.ObjectId(articleId)},  
+//       { $pull: 
+//         { comments: 
+//           {
+//             _id: mongojs.ObjectId(commentId)
+//           }
+//         }
+//       },
+//       function(error, removed){
+//         if (error) {
+//           console.log(error)
+//         }
+//         res.json(commentId);
+//       });
+
   var id = req.params.id;
 
   db.comments.remove({
@@ -77,7 +96,27 @@ app.delete("/comment/:id", function(req, res) {
 
 // Handle form submission, save submission to mongo
 app.post("/addComment", function(req, res) {
-  
+
+  // TRY THIS
+ // app.post("/addComment/:id", function(req, res) { 
+  // db.scrapedNews.update(
+  //     {_id: mongojs.ObjectID(id)},  
+  //     { $push: 
+  //       { comments: 
+  //         {
+  //           _id: mongojs.ObjectId(),
+  //           comment: comment
+  //         }
+  //       }
+  //     },
+  //     function(error, savedComment){
+  //       if (error) {
+  //         console.log(error)
+  //       } else {
+  //         res.json(savedComment);
+  //       }
+  //     });
+    
   // Insert the comment into the comments collection
   db.comments.insert({
     comment: req.body.comment

@@ -47,19 +47,19 @@
       getNews();
       // getComments();
 
-      function getComments(cd){
+   //    function getComments(cd){
 
-      	$.ajax({
-      		method: 'GET',
-      		url: '/all-comments'
-      	}).then(function(c){
+   //    	$.ajax({
+   //    		method: 'GET',
+   //    		url: '/all-comments'
+   //    	}).then(function(c){
 
-      		for (var cIndex in c){
-      		var prevComments = $("<div>").attr("class", "prevCommentsDiv").html(c[cIndex].comment);
-      		cd.append(prevComments);
-			}
-      	})
-      }
+   //    		for (var cIndex in c){
+   //    		var prevComments = $("<div>").attr("class", "prevCommentsDiv").html(c[cIndex].comment);
+   //    		cd.append(prevComments);
+			// }
+   //    	})
+   //    }
       
       $(document).on('click', '.add-comment', function(e){
       
@@ -105,7 +105,7 @@
       	}).then(function(idd){
       		console.log(idd);
       		getNews();
-      		getComments();
+      		// getComments();
       	})
       })
     </script>
