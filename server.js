@@ -28,7 +28,7 @@ db.on("error", function(error) {
   console.log("Database Error:", error);
 });
 
-// Retrieve data from the db
+// Retrieve all news from the db
 app.get("/news", function(req, res) {
 
   // Find all results from the scrapedNews collection in the db
@@ -44,10 +44,27 @@ app.get("/news", function(req, res) {
   });
 });
 
+// Retrieve all comments data from the db
+app.get("/all-comments", function(req, res) {
+
+  // Find all results from the scrapedNews collection in the db
+  db.comments.find({}, function(error, found) {
+    // Throw any errors to the console
+    if (error) {
+      console.log(error);
+    }
+    // If there are no errors, send the data to the browser as json
+    else {
+      res.json(found);
+    }
+  });
+});
+
+
 app.delete("/comment/:id", function(req, res) {
   var id = req.params.id;
 
-  db.scrapedNews.remove({
+  db.comments.remove({
     "_id": mongojs.ObjectID(id)
   }, function(error, removed) {
     if (error) {
