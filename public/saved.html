@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Scraping News: Home</title>
+    <title>Scraping News: Saved Articles</title>
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-     <!-- CSS files -->
+    <!-- CSS files -->
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
   </head>
   <body>
 
     <nav>
-      <button id="goToSaved">
-        <a href="/saved.html">Saved Articles</a>
+      <button id="goToHome">
+      <a href="/index.html">Home</a>
       </button>
     </nav>
 
     <div class="container text-center">
-      <h1>ONION NEWS</h1>
+      <h1>Onion News</h1>
+      <h2>Saved Articles</h2>
 
-        <div id="mainDiv"><br>
-          <h3>All News</h3>
-        </div>    
+      <div id="favArticlesDiv">
+        <br>
+        <h3>Saved Articles</h3>
+      </div>
     </div>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -28,13 +30,11 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <!-- Popper.js (for Bootstrap)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
     <script type="text/javascript" src="./assets/javascript/app.js"></script>
     <script type="text/javascript">
-     getNews();
+      getFavNews();
     </script>
   </body>
 </html>
