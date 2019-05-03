@@ -154,24 +154,24 @@ app.get("/scrape", function(req, res) {
       console.log(link);
       console.log(story);
 
-      // If this found element had both a title and a link
-      if (link && title && story) {
-        // Insert the data in the scrapedNews db
-        db.scrapedNews.insert({
-            link: link,
-            title: title,
-            story: story
-          },
-          function(err, inserted) {
-            if (err) {
-              // Log the error if one is encountered during the query
-              console.log(err);
-            } else {
-              // Otherwise, log the inserted data
-              console.log(inserted);
-            }
-          });
-      }
+        // If this found element had both a title and a link
+        if (link && title && story) {
+          // Insert the data in the scrapedNews db
+          db.scrapedNews.insert({
+              link: link,
+              title: title,
+              story: story
+            },
+            function(err, inserted) {
+              if (err) {
+                // Log the error if one is encountered during the query
+                console.log(err);
+              } else {
+                // Otherwise, log the inserted data
+                console.log(inserted);
+              }
+            });
+        }
     });
   });
 

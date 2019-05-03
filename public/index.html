@@ -2,112 +2,29 @@
 <html>
   <head>
     <title>Scraping News</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     <!-- CSS files -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
   </head>
   <body>
+    <div class="container text-center">
     <h1>ONION NEWS</h1>
     <div id="mainDiv">
     </div>
-    <script
-      src="https://code.jquery.com/jquery-3.4.0.min.js"
-      integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
-      crossorigin="anonymous"></script>
+    </div>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- Popper.js (for Bootstrap)-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="./assets/javascript/app.js"></script>
     <script type="text/javascript">
-      var inputVal;
-      
-      function getNews(){
-      	$('div').empty();
-      
-      	$.ajax({
-      		method: 'GET',
-      		url: '/news'
-      	}).then(function(news){
-
-      		for (var nIndex in news){
-      
-      			var newsDiv = $('<div>');
-      			newsDiv.html(`Title: ${news[nIndex].title} <br>Link: ${news[nIndex].link} <br>Story: ${news[nIndex].story} <br>`);
-      
-      			var commentDiv = $("<div>").attr("class", "commentDiv")
-      									  .attr("id","commentDiv"+news[nIndex]._id);
-      
-      			var input = $('<input>').attr("class", "comment")
-      									.attr("id", "input"+news[nIndex]._id);
-
-      			var addButton = $('<button>').attr('class', 'add-comment').attr('data-id', news[nIndex]._id).text('Add comment');
-      			// getComments(commentDiv);
-      			newsDiv.append(commentDiv);
-      			newsDiv.append(input);
-      			newsDiv.append(addButton);
-      			
-      			$('#mainDiv').append(newsDiv);
-      		}
-      	})
-      }
-      
-      getNews();
-      // getComments();
-
-   //    function getComments(cd){
-
-   //    	$.ajax({
-   //    		method: 'GET',
-   //    		url: '/all-comments'
-   //    	}).then(function(c){
-
-   //    		for (var cIndex in c){
-   //    		var prevComments = $("<div>").attr("class", "prevCommentsDiv").html(c[cIndex].comment);
-   //    		cd.append(prevComments);
-			// }
-   //    	})
-   //    }
-      
-      $(document).on('click', '.add-comment', function(e){
-      
-      	e.preventDefault();
-      
-      	inputVal = $(this).prev().val();
-      	var currDiv = $(this).prev().prev(".commentDiv");
-      	// inputVal = $('input').val();
-      	console.log(inputVal);
-
-      	$.ajax({
-      		method: 'POST',
-      		url: `/addComment`,
-      		data: {
-      			comment: inputVal
-      		}
-      	}).then(function(cid){
-      
-      		console.log(cid);
-      		console.log(cid.comment);
-      		console.log(cid._id);
-
-      		var commentPara = $("<p>").text(cid.comment).attr("id", "commentPara"+cid._id);
-
-      		var deleteButton = $('<button>').attr('class', 'delete-comment').attr('data-id', cid._id).text('Delete comment');
-      
-      		commentPara.append(deleteButton);
-      		currDiv.append(commentPara);
-      
-      		// getNews();
-      		// getComments();
-      	})
-      })
-      
-      
-      $(document).on('click', '.delete-comment', function(){
-      
-      	var id = $(this).attr('data-id');
-      
-      	$.ajax({
-      		method: 'DELETE',
-      		url: `/comment/${id}`
-      	}).then(function(idd){
-      		console.log(idd);
-      		getNews();
-      		// getComments();
-      	})
-      })
+      //js code
     </script>
   </body>
 </html>
