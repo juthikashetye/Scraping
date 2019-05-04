@@ -111,7 +111,7 @@ $(document).on('click', '.saveArticle', function(e) {
   e.preventDefault();
 
   var favArticleTitle = $(this).parent().children(".titleSpan").text();
-  var favArticleLink = $(this).parent().children(".storyLink").text();
+  var favArticleLink = $(this).parent().children(".storyLink").attr("href");
   var favArticleStory = $(this).parent().children(".storySpan").text();
   $.ajax({
     method: 'POST',
