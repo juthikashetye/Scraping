@@ -54,8 +54,8 @@ function getFavNews() {
     for (var sIndex in sNews) {
 
       var sNewsDiv = $("<div>");
-      sNewsDiv.html(`<span class="titleSpan">Title: ${sNews[sIndex].title}</span> <br> 
-                     <span class="storySpan">Story: ${sNews[sIndex].story}</span> <br>
+      sNewsDiv.html(`<span class="titleSpan">${sNews[sIndex].title}</span> <br> 
+                     <span class="storySpan">${sNews[sIndex].story}</span> <br>
                      <a class="storyLink" href="${sNews[sIndex].link}">See full story</a> <br>`);
 
       var commentDiv = $("<div>").attr("class", "commentDiv")

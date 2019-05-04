@@ -1,3 +1,17 @@
+body {
+	background-color: rgb(250,240,230);
+}
 button {
 	margin-left: 2%;
+}
+header {
+	background-color: rgb(0, 0, 77);
+}
+
+#mainDiv div, #favArticlesDiv div {
+	margin: 2%;
+}
+
+.saveArticle {
+	margin: 2%;
 }
