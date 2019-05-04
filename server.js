@@ -171,42 +171,49 @@ app.listen(3000, function() {
   console.log("App running on port 3000!");
 });
 
-// TRY THIS
- // app.post("/addComment/:id", function(req, res) { 
- //  db.scrapedNews.update(
- //    {_id: mongojs.ObjectID(id)},  
- //      { $push: 
- //        { comments: 
- //          {
- //            _id: mongojs.ObjectId(),
- //            comment: comment
- //          }
- //        }
- //      },
- //      function(error, savedComment){
- //        if (error) {
- //          console.log(error)
- //        } else {
- //          res.json(savedComment);
- //        }
- //    });
- // });
+// THIS IS WORKING
+//  db.students.update(
+//    { _id: 1 },
+//    { $push: { scores: 89 } }
+// )
+ 
+// curl -d "comment=Hi" -X POST http://localhost:3000/addComment/5ccc9db18676e17b2ed1fe97/
 
- // TRY THIS
-// app.delete("/comment/:articleId/:commentId", function(req, res) {
+// app.post("/addComment/:id", function(req, res) {
+
+//  var articleId = req.params.id;
+ 
 //   db.scrapedNews.update(
-//       {_id: mongojs.ObjectId(articleId)},  
-//       { $pull: 
-//         { comments: 
-//           {
-//             _id: mongojs.ObjectId(commentId)
-//           }
-//         }
-//       },
-//       function(error, removed){
+//     {_id: mongojs.ObjectID(articleId)},  
+//       { $push: { comments: {_id: mongojs.ObjectID(), comment: req.body.comment } } },
+//       function(error, savedComment){
 //         if (error) {
 //           console.log(error)
+//         } else {
+//           res.json(savedComment);
 //         }
-//         res.json(commentId);
-//       });
+//     });
+//  });
+
+// THIS IS WORKING
+// db.profiles.update( 
+//    { _id: 1 }, { $pull: { votes: { $gte: 6 } } }
+// )
+
+// curl -X DELETE http://localhost:3000/comment/5ccc9db18676e17b2ed1fe97/5cccdf534e29947f465003ff/
+
+// app.delete("/comment/:id/:cID", function(req, res) {
+
+//   var articleID = req.params.id;
+//   var commentID = req.params.cID;
+
+//     db.scrapedNews.update(
+//         {_id: mongojs.ObjectId(articleID)},  
+//         { $pull: { comments: {_id : mongojs.ObjectID(commentID) } } },
+//         function(error, removed){
+//           if (error) {
+//             console.log(error)
+//           }
+//           res.json(removed);
+//         });
 // });
